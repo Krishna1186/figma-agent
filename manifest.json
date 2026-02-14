@@ -1,0 +1,19 @@
+{
+    "name": "Figma Agent",
+    "id": "figma-agent-prototype",
+    "api": "1.0.0",
+    "main": "dist/code.js",
+    "ui": "dist/index.html",
+    "capabilities": [],
+    "enableProposedApi": false,
+    "editorType": [
+        "figma",
+        "figjam"
+    ],
+    "networkAccess": {
+        "allowedDomains": [
+            "*"
+        ],
+        "reasoning": "For AI Design generation"
+    }
+}
