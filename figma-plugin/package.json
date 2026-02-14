@@ -1,0 +1,13 @@
+{
+  "name": "figma-agent-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc && node build.js",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.100.0",
+    "typescript": "^5.0.0"
+  }
+}
