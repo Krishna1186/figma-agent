@@ -1,5 +1,22 @@
+# Dependencies
 node_modules/
-dist/
-.DS_Store
-*.log
+
+# Build outputs
+figma-plugin/dist/
+backend/.next/
+backend/out/
+
+# Env and secrets
 .env
+.env.local
+.env*.local
+
+# IDE and OS
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Figma plugin watch
+*.map

@@ -1,25 +1,12 @@
 {
-  "name": "figma-agent-prototype",
+  "name": "figma-agent",
   "version": "1.0.0",
-  "description": "AI-powered Figma Agent",
+  "private": true,
+  "description": "Agentic Figma interface: design via prompts + image upload",
   "scripts": {
-    "build": "vite build && npx esbuild src/main/code.ts --bundle --outfile=dist/code.js --format=iife --target=es6",
-    "watch": "vite build --watch",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "zod": "^3.22.4",
-    "openai": "^4.20.1"
-  },
-  "devDependencies": {
-    "@figma/plugin-typings": "^1.84.0",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@vitejs/plugin-react": "^4.2.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0",
-    "vite-plugin-singlefile": "^0.13.5"
+    "setup": "node scripts/setup.js",
+    "start": "npm run dev --prefix backend",
+    "build": "npm run build --prefix figma-plugin && npm run build --prefix backend",
+    "build:plugin": "npm run build --prefix figma-plugin"
   }
 }
