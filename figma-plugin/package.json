@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc && node build.js",
+    "build": "node build.js",
     "watch": "tsc --watch"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.100.0",
+    "esbuild": "^0.25.9",
     "typescript": "^5.0.0"
   }
 }

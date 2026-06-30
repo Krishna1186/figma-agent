@@ -1,0 +1,20 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+numpy
+opencv-python
+pillow
+pymupdf
+paddleocr
+scipy
+scikit-learn
+joblib
+rembg
+onnxruntime
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+transformers
+google-genai
+segment-anything

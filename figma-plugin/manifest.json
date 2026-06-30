@@ -1,11 +1,13 @@
 {
-  "name": "Figma Agent",
+  "name": "Figma Decomposer",
   "id": "figma-agent-plugin",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",
   "editorType": ["figma"],
   "networkAccess": {
-    "allowedDomains": ["http://localhost:3000", "https://your-backend.vercel.app"]
+    "allowedDomains": ["http://localhost:8000"],
+    "devAllowedDomains": ["http://localhost:8000"],
+    "reasoning": "Plugin uploads files to local FastAPI backend for decomposition."
   }
 }

@@ -1,28 +1,35 @@
-/**
- * Simple build: compile TS with tsc (emit to dist via tsconfig.build.json),
- * then inline the UI into one HTML file for manifest "ui" entry.
- */
 const fs = require('fs');
 const path = require('path');
+const esbuild = require('esbuild');
 
-const distDir = path.join(__dirname, 'dist');
+const root = __dirname;
+const distDir = path.join(root, 'dist');
 if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
 
-const uiHtml = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Figma Agent</title></head>
-<body>
-  <div id="root"></div>
-  <textarea id="prompt" placeholder="Describe what to create or edit..." style="width:100%;height:80px;margin:8px 0;"></textarea>
-  <button id="run">Run</button>
-  <pre id="log" style="font-size:11px;white-space:pre-wrap;max-height:200px;overflow:auto;"></pre>
-  <script>${fs.readFileSync(path.join(__dirname, 'src', 'ui.js'), 'utf8')}</script>
-</body></html>`;
+const uiHtmlPath = path.join(root, 'ui.html');
+const uiHtml = fs.readFileSync(uiHtmlPath, 'utf8');
 
-fs.writeFileSync(path.join(distDir, 'ui.html'), uiHtml);
-console.log('Wrote dist/ui.html');
+(async () => {
+  const result = await esbuild.build({
+    entryPoints: [path.join(root, 'src', 'code.ts')],
+    bundle: true,
+    format: 'iife',
+    platform: 'browser',
+    target: ['es2017'],
+    write: false,
+    logLevel: 'info'
+  });
 
-// Inject UI HTML into main code so __html__ is available at runtime
-const codePath = path.join(distDir, 'code.js');
-let codeJs = fs.readFileSync(codePath, 'utf8');
-codeJs = 'var __html__ = ' + JSON.stringify(uiHtml) + ';\n' + codeJs;
-fs.writeFileSync(codePath, codeJs);
-console.log('Injected __html__ into dist/code.js');
+  const bundleText = String(result.outputFiles[0].text || '')
+    .replace(/\nexport\s*\{\s*\};?\s*$/m, '\n');
+
+  const wrapped = `(function(){\nvar __html__ = ${JSON.stringify(uiHtml)};\n${bundleText}\n})();\n`;
+
+  fs.writeFileSync(path.join(distDir, 'code.js'), wrapped, 'utf8');
+  fs.writeFileSync(path.join(distDir, 'ui.html'), uiHtml, 'utf8');
+
+  console.log('Built dist/code.js with explicit wrapper and dist/ui.html');
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

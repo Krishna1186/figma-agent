@@ -1,0 +1,12 @@
+{
+  "name": "figma-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agentic Figma interface: design via prompts + image upload",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "start": "npm run dev --prefix backend",
+    "build": "npm run build --prefix figma-plugin && npm run build --prefix backend",
+    "build:plugin": "npm run build --prefix figma-plugin"
+  }
+}

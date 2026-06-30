@@ -1,21 +1,24 @@
 {
-  "name": "figma-agent-backend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start -p 3000"
-  },
-  "dependencies": {
-    "next": "^14.0.0",
-    "openai": "^4.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.0.0",
-    "typescript": "^5.0.0"
-  }
+    "name":  "figma-agent-backend",
+    "version":  "1.0.0",
+    "private":  true,
+    "scripts":  {
+                    "dev":  "next dev -p 3000",
+                    "build":  "next build",
+                    "start":  "next start -p 3000"
+                },
+    "dependencies":  {
+                         "@google/generative-ai":  "^0.21.0",
+                         "next":  "^14.0.0",
+                         "openai":  "^4.0.0",
+                         "react":  "^18.0.0",
+                         "react-dom":  "^18.0.0",
+                         "@napi-rs/canvas":  "^0.1.60",
+                         "pdfjs-dist":  "^4.0.379"
+                     },
+    "devDependencies":  {
+                            "@types/node":  "^20.0.0",
+                            "@types/react":  "^18.0.0",
+                            "typescript":  "^5.0.0"
+                        }
 }
